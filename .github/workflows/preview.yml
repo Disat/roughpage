@@ -14,7 +14,10 @@ jobs:
         run:  ls
       - name: install roughpage
         run: go mod tidy
+        working-directory: .\roughpage\
       - name: build roughpage
         run: go build .
+        working-directory: .\roughpage\
       - name: execute roughpage
         run: .\roughpage.exe
+        working-directory: .\roughpage\
