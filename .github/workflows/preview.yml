@@ -6,6 +6,8 @@ jobs:
     steps:
       - name: clone repository
         run: git clone https://github.com/Disat/roughpage.git
+      - name: debug list
+        run: ls
       - name: cd 
         run: cd roughpage
       - name: debug list
