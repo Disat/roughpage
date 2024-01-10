@@ -4,8 +4,8 @@ jobs:
   roughpage_preview:
     runs-on: windows-latest
     steps:
-      - name: clone repository
-        run: git clone https://github.com/Disat/roughpage.git
+      - name: checkout 
+        uses: actions/checkout@v4
       - name: debug list
         run: ls
       - name: cd  (Set-Location) 
@@ -14,10 +14,7 @@ jobs:
         run:  ls
       - name: install roughpage
         run: go mod tidy
-        working-directory: .\roughpage\
       - name: build roughpage
         run: go build .
-        working-directory: .\roughpage\
       - name: execute roughpage
         run: .\roughpage.exe
-        working-directory: .\roughpage\
