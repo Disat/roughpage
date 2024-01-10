@@ -9,7 +9,7 @@ jobs:
           git clone https://github.com/Disat/roughpage.git
           cd roughpage
       - name: install roughpage
-        run: go mode tidy
+        run: go mod tidy
       - name: build roughpage
         run: go build .
       - name: execute roughpage
