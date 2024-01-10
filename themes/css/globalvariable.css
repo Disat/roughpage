@@ -1,0 +1,42 @@
+@font-face {
+    font-family: "MuYuShiDeYi";
+    src: url("/fonts/MuYuShiDeYi-2.woff2") format("woff2");
+}
+
+
+/* color */
+:root{
+    --bg_h: #f9f5d7;
+    --bg: #fbf1c7;
+    --bg_s: #f2e5bc;
+    --bg1: #ebdbb2;
+    --bg2: #d5c4a1;
+    --bg3: #bdae93;
+    --bg4: #a89984;
+
+    --fg: #282828;
+    --fg1: #3c3836;
+    --fg2: #504945;
+    --fg3: #665c54;
+    --fg4: #7c6f64;
+    --font-size:20px;
+    --font-family: "MuYuShiDeYi";
+
+    --red: #fb4934;
+    --green: #b8bb26;
+    --yellow: #fabd2f;
+    --blue: #83a598;
+    --purple: #d3869b;
+    --aqua: #8ec07c;
+    --gray: #928374;
+    --orange: #fe8019;
+
+    --red-dim: #cc2412;
+    --green-dim: #98971a;
+    --yellow-dim: #d79921;
+    --blue-dim: #458588;
+    --purple-dim: #b16286;
+    --aqua-dim: #689d6a;
+    --gray-dim: #a89984;
+    --orange-dim: #d65d0e;
+}

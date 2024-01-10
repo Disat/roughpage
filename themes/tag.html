@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/rough.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        {{template "header" .globalconfig}}
+        <div class="rough-hr-container">
+        </div>
+        <main class="grid-container">
+            <div class="content">
+                <p>这是张鑫的博客，以整理自己学习过程中的知识为主，记录为辅</p>
+                <div class="rough-hr-container">
+                </div>
+                <h2 class="list-title">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentcolor" class="taxonomy-svg">
+                        <path d="M7.5 6A1.5 1.5.0 109 7.5 1.5 1.5.0 007.5 6zm13.62 4.71-8.41-8.42A1 1 0 0012 2H3A1 1 0 002 3v9a1 1 0 00.29.71l8.42 8.41a3 3 0 004.24.0L21.12 15a3 3 0 000-4.24zm-1.41 2.82h0l-6.18 6.17a1 1 0 01-1.41.0L4 11.59V4h7.59l8.12 8.12a1 1 0 01.29.71A1 1 0 0119.71 13.53z"></path>
+                    </svg>
+                    <span>{{.tag}}</span>
+                </h2>
+                <ul>
+                    {{range .articles}}
+                    <li>
+                        <div class="title-container">
+                            <h3><a href="/article/{{.Filename}}.html">{{.Title}}</a></h3>
+                            <div class="additional-container">
+                                <span class="update-date">{{.UpdateTimeString}}</span>
+                                <div class="article-tags-container">
+                                    {{range .Tags}}
+                                    <div>
+                                        <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentcolor" class="taxonomy-svg">
+                                            <path d="M7.5 6A1.5 1.5.0 109 7.5 1.5 1.5.0 007.5 6zm13.62 4.71-8.41-8.42A1 1 0 0012 2H3A1 1 0 002 3v9a1 1 0 00.29.71l8.42 8.41a3 3 0 004.24.0L21.12 15a3 3 0 000-4.24zm-1.41 2.82h0l-6.18 6.17a1 1 0 01-1.41.0L4 11.59V4h7.59l8.12 8.12a1 1 0 01.29.71A1 1 0 0119.71 13.53z"></path>
+                                        </svg><a href="./tag/{{ . }}/index.html">{{.}}</a>
+                                    </div>
+                                    {{end}}
+                                </div>
+                            </div>
+                        </div>
+                        <p class="preview"><a href="/article/{{.Filename}}.html">{{.Preview}}</a></p>
+                    </li>
+                    {{end}}
+                </ul>
+                <div class="rough-hr-container">
+                </div>
+                <div class="pagination-container">
+                    {{if eq .pageNumber 0}}
+                    {{else}}
+                    {{if eq .pageNumber 1}}
+                    <div class="page-number"><a href="./index.html">上一页</a></div>
+                    {{else}}
+                    <div class="page-number"><a href="./page_{{Minus .pageNumber 1}}.html">上一页</a></div>
+                    {{end}}
+                    {{end}}
+
+                    {{range $k,$v := .pagination}}
+                    {{if eq $k 0}}
+                    {{if eq $k $.pageNumber}}
+                    <div class="page-number pageNumber-active"><a href="./index.html">{{Add $k 1}}</a></div>
+                    {{else}}
+                    <div class="page-number"><a href="./index.html">{{Add $k 1}}</a></div>
+                    {{end}}
+                    {{else}}
+                    {{if eq $k $.pageNumber}}
+                    <div class="page-number pageNumber-active"><a href="./page_{{ $k }}.html">{{Add $k 1}}</a></div>
+                    {{else}}
+                    <div class="page-number"><a href="./page_{{ $k }}.html">{{Add $k 1}}</a></div>
+                    {{end}}
+                    {{end}}
+                    {{end}}
+
+                    {{if lt .pageNumber (Minus (len .pagination) 1)}}
+                    <div class="page-number"><a href="./page_{{Add .pageNumber 1}}.html">下一页</a></div>
+                    {{end}}
+                </div>
+            </div>
+            <div class="sidebar">
+                <h3 class="taxonmy category">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 -960 960 960" width="1em">
+                        <path d="m260-520 220-360 220 360H260ZM700-80q-75 0-127.5-52.5T520-260q0-75 52.5-127.5T700-440q75 0 127.5 52.5T880-260q0 75-52.5 127.5T700-80Zm-580-20v-320h320v320H120Zm580-60q42 0 71-29t29-71q0-42-29-71t-71-29q-42 0-71 29t-29 71q0 42 29 71t71 29Zm-500-20h160v-160H200v160Zm202-420h156l-78-126-78 126Zm78 0ZM360-340Zm340 80Z" />
+                    </svg><span>Categories</span>
+                </h3>
+                <ul class="category-container">
+                    {{range .categories}}
+                    <li><a href="/category/{{.}}/index.html">{{.}}</a></li>
+                    {{end}}
+                </ul>
+                <h3 class="taxonmy tags">
+                    <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentcolor" class="taxonomy-svg">
+                        <path d="M7.5 6A1.5 1.5.0 109 7.5 1.5 1.5.0 007.5 6zm13.62 4.71-8.41-8.42A1 1 0 0012 2H3A1 1 0 002 3v9a1 1 0 00.29.71l8.42 8.41a3 3 0 004.24.0L21.12 15a3 3 0 000-4.24zm-1.41 2.82h0l-6.18 6.17a1 1 0 01-1.41.0L4 11.59V4h7.59l8.12 8.12a1 1 0 01.29.71A1 1 0 0119.71 13.53z"></path>
+                    </svg><span>Tags</span>
+                </h3>
+                <ul class="tags-container"> {{range .tags}} <li><a href="/tag/{{.}}/index.html">{{.}}</a></li>{{end}} </ul>
+            </div>
+        </main>
+        {{template "footer" .globalconfig}}
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

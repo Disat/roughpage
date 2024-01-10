@@ -1,0 +1,10 @@
+site:
+  title: "张鑫的主页"
+  limit: 8
+  theme: themes
+
+publish:
+  output: "public"
+
+server:
+  port: 8000
