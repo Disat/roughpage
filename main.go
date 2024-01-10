@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-	// TemplateFunc()
+	utils.CreateDirectoryIfnotexist([]string{"public"}, "./")
+
 	utils.ClearDir()
 	ParseGlobalConfig()
 	ParseArticles()
@@ -16,9 +17,5 @@ func main() {
 	RenderArchive()
 	RenderArticles()
 	utils.Copy([]string{"js", "css", "fonts"})
-	// time.Sleep(3 * time.Second)
-	// Build01()
-	// Readingtpl()
-	// ParseMD()
 
 }
