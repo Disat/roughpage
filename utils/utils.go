@@ -64,24 +64,6 @@ func GetFileCreationAndModifiyTime(absolutefilepath string) (creationtime time.T
 		fmt.Println(err)
 	}
 
-	// if runtime.GOOS == "windows" {
-	// 	osStat, ok := fsinfo.Sys().(*syscall.Win32FileAttributeData)
-	// 	if !ok {
-	// 		panic("Unsupported type assertion")
-	// 	}
-	// 	creationTime := time.Unix(0, osStat.CreationTime.Nanoseconds())
-	// 	return creationTime
-	// } else if runtime.GOOS == "linux" {
-	// 	stat, ok := fsinfo.Sys().(*syscall.Stat_t)
-	// 	if !ok {
-	// 		panic("Unsupported type assertion")
-	// 	}
-	// 	creationTime := time.Unix(int64(stat.Ctim.Sec), int64(stat.Ctim.Nsec))
-	// 	return creationTime
-	// } else {
-	// 	panic("Doesn't support this OS")
-	// }
-
 	osStat, ok := fsinfo.Sys().(*syscall.Win32FileAttributeData)
 	if !ok {
 		panic("Unsupported type assertion")
