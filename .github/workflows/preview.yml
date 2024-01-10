@@ -8,6 +8,8 @@ jobs:
         run: |
           git clone https://github.com/Disat/roughpage.git
           cd .\roughpage\
+      - name: debug list
+        run:  list
       - name: install roughpage
         run: go mod tidy
       - name: build roughpage
