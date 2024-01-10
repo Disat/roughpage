@@ -8,8 +8,8 @@ jobs:
         run: git clone https://github.com/Disat/roughpage.git
       - name: debug list
         run: ls
-      - name: cd 
-        run: cd roughpage
+      - name: cd  (Set-Location) 
+        run: Set-Location roughpage
       - name: debug list
         run:  ls
       - name: install roughpage
