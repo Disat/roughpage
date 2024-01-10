@@ -9,7 +9,7 @@ jobs:
       - name: debug list
         run: ls
       - name: cd  (Set-Location) 
-        run: Set-Location roughpage
+        run: Set-Location .\roughpage\
       - name: debug list
         run:  ls
       - name: install roughpage
