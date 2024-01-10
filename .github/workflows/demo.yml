@@ -31,3 +31,5 @@ jobs:
         run: |
          echo "hello github actions from windows"
          Get-Date
+      - name: echo context
+        run: echo ${{github.repositoryUrl}}
