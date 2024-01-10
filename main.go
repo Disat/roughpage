@@ -10,7 +10,6 @@ func main() {
 	utils.ClearDir()
 	ParseGlobalConfig()
 	ParseArticles()
-
 	RenderNew()
 	RenderCategories()
 	RenderTags()
