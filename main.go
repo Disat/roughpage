@@ -15,7 +15,6 @@ func main() {
 	RenderTags()
 	RenderArchive()
 	RenderArticles()
-
 	utils.Copy([]string{"js", "css", "fonts"})
 
 }
