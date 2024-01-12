@@ -15,7 +15,6 @@ import (
 )
 
 var GlobalConfig model.GlobalConfig
-var Article model.Article
 var Articles []model.Article
 var Categories []string
 var UniqueTags []string
@@ -40,27 +39,28 @@ func ParseArticles() {
 		log.Fatal("Glob() error when reading files")
 	}
 	for _, file := range files {
+		var article model.Article
 		articleByte, err := os.ReadFile(file)
 		if err != nil {
 			log.Fatal("ReadFile() error when reading article file")
 		}
 		markdownList := strings.SplitN(string(articleByte), "---", 2)
-		err = json.Unmarshal([]byte(markdownList[0]), &Article.ArticleConfig)
+		err = json.Unmarshal([]byte(markdownList[0]), &article.ArticleConfig)
 		if err != nil {
 			log.Fatal("Unmarshel error when parse ArticleConfig\n", err)
 		}
-		Article.ArticleConfig.Markdown = markdownList[1]
+		article.ArticleConfig.Markdown = markdownList[1]
 		filename := filepath.Base(file)
 		filenamewithoutExt := filename[:len(filename)-len(path.Ext(filename))]
-		Article.Filename = filenamewithoutExt
-		Article.CreateTime, Article.UpdateTime = utils.GetFileCreationAndModifiyTime(file)
-		Article.CreateYear = Article.CreateTime.Year()
-		Article.CreateMonth = int(Article.CreateTime.Month())
-		Article.CreateTimeString = Article.CreateTime.Format("2006-01-02 15:04:05")
-		Article.UpdateTimeString = Article.UpdateTime.Format("2006-01-02 15:04:05")
-		UniqueTags = append(UniqueTags, Article.ArticleConfig.Tags...)
-		Categories = append(Categories, Article.ArticleConfig.Category)
-		Articles = append(Articles, Article)
+		article.Filename = filenamewithoutExt
+		article.CreateTime, article.UpdateTime = utils.GetFileCreationAndModifiyTime(file)
+		article.CreateYear = article.CreateTime.Year()
+		article.CreateMonth = int(article.CreateTime.Month())
+		article.CreateTimeString = article.CreateTime.Format("2006-01-02 15:04:05")
+		article.UpdateTimeString = article.UpdateTime.Format("2006-01-02 15:04:05")
+		UniqueTags = append(UniqueTags, article.ArticleConfig.Tags...)
+		Categories = append(Categories, article.ArticleConfig.Category)
+		Articles = append(Articles, article)
 	}
 	utils.RemoveDuplicates(&UniqueTags)
 	utils.RemoveDuplicates(&Categories)

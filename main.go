@@ -7,7 +7,21 @@ import (
 )
 
 func main() {
+
 	directoryPath := "./public"
+	if _, err := os.Stat(directoryPath); os.IsNotExist(err) {
+		fmt.Println("Directory does not exist.")
+		return
+	}
+
+	// Remove the directory and its contents
+	err := os.RemoveAll(directoryPath)
+	if err != nil {
+		fmt.Printf("Failed to remove directory: %v\n", err)
+		return
+	}
+
+	fmt.Println("Directory removed successfully.")
 
 	// Check if the directory exists
 	if _, err := os.Stat(directoryPath); os.IsNotExist(err) {
@@ -26,8 +40,6 @@ func main() {
 		// Directory already exists
 		fmt.Printf("Directory %s already exists\n", directoryPath)
 	}
-
-	utils.ClearDir()
 	ParseGlobalConfig()
 	ParseArticles()
 	RenderNew()
