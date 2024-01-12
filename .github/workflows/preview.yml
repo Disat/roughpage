@@ -12,3 +12,5 @@ jobs:
           tag: latest
           file: roughpage.exe
           path: ./
+      - name: debug list
+        run: ls
