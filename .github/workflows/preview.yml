@@ -21,8 +21,6 @@ jobs:
         run: ls
       - name: generate public static direcory public
         run: .\roughpage.exe
-      - name: debug list
-        run: ls .\public\tag\设计
       - name: Install Vercel CLI
         run: yarn add vercel@canary
       - name: Pull Vercel Environment Information
