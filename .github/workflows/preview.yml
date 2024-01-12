@@ -4,6 +4,8 @@ jobs:
   roughpage_preview:
     runs-on: windows-latest
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
       - name: download releases
         uses: i3h/download-release-asset@v1
         with:
