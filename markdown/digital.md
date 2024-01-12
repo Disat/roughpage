@@ -3,7 +3,7 @@
 "top": true,
 "toc": true,
 "category": "DigitalCircuit",
-"tags":["Circuit","RiscV","CPU","FPGA"],
+"tags":["Circuit","Risc-V","CPU","FPGA"],
 "preview": "这是关于数字电路设计入门"
 }
 ---
