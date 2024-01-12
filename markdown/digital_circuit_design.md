@@ -3,7 +3,7 @@
 "top": true,
 "toc": true,
 "category": "DigitalCircuit",
-"tags":["Circuit","RiscV","CPU"],
+"tags":["OS"],
 "preview": "这是关于数字电路设计入门"
 }
 ---
