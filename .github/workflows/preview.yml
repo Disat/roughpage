@@ -30,4 +30,4 @@ jobs:
       - name: debug list
         run: ls .vercel\output\static\tag
       - name: Deploy Project Artifacts to Vercel
-        run: .\node_modules\.bin\vercel deploy --force --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: .\node_modules\.bin\vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
