@@ -30,4 +30,4 @@ jobs:
       - name: Build Project Artifacts
         run: .\node_modules\.bin\vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: .\node_modules\.bin\vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: .\node_modules\.bin\vercel deploy --force --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
