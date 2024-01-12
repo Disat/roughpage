@@ -3,7 +3,7 @@
 "top": true,
 "toc": true,
 "category": "DigitalCircuit",
-"tags":["C"],
+"tags":["C","指令集"],
 "preview": "这是关于数字电路设计入门"
 }
 ---
