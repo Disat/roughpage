@@ -2,7 +2,11 @@ name: roughpage_preview
 env:
   VERCEL_ORG_ID: ${{ secrets.ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID }}
-on: workflow_dispatch
+on:
+  push:
+    paths:
+     - 'markdown/**'
+  workflow_dispatch:
 jobs:
   roughpage_preview:
     runs-on: windows-latest
