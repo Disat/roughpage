@@ -4,9 +4,10 @@ jobs:
   roughpage_preview:
     runs-on: windows-latest
     steps:
-    - uses: robinraju/release-downloader@v1.8
-          with:
+      - name: download releases
+        uses: robinraju/release-downloader@v1.8
+        with:
             latest: true
             fileName: "roughpage.exe"
-    - name: Display structure of downloaded files
-      run: ls 
+      - name: Display structure of downloaded files
+        run: ls 
