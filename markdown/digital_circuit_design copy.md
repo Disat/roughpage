@@ -3,7 +3,7 @@
 "top": true,
 "toc": true,
 "category": "DigitalCircuit",
-"tags":["谁"],
+"tags":["谁","调试成功"],
 "preview": "这是关于数字电路设计入门"
 }
 ---
