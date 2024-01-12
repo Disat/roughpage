@@ -79,7 +79,7 @@ func RenderNew() {
 		}
 		outFile, err := os.Create(pagePath)
 		if err != nil {
-			log.Fatal("Create() error when create page.html")
+			fmt.Println(err)
 		}
 		err = completeIndexTpl.Execute(outFile, map[string]interface{}{
 			"globalconfig": GlobalConfig,
