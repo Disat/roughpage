@@ -36,6 +36,7 @@ func RenderNew() {
 	partialstpl, err := template.ParseGlob(filepath.Join(themePath, "partials", "_*.html"))
 	if err != nil {
 		log.Fatal("ParseGlob() error when reading and parse _*.html")
+		fmt.Println(err)
 	}
 
 	Pages := len(Articles) / GlobalConfig.Site.Limit
@@ -53,11 +54,13 @@ func RenderNew() {
 
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse index.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl, err := partialstpl.AddParseTree("restitem", indextpl.Tree)
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse restitem.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl.Funcs(template.FuncMap{
@@ -101,6 +104,7 @@ func RenderCategories() {
 	partialstpl, err := template.ParseGlob(filepath.Join(themePath, "partials", "_*.html"))
 	if err != nil {
 		log.Fatal("ParseGlob() error when reading and parse _*.html")
+		fmt.Println(err)
 	}
 
 	indexByte, err := os.ReadFile("./themes/category.html")
@@ -114,11 +118,13 @@ func RenderCategories() {
 
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse category.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl, err := partialstpl.AddParseTree("archieveCategory", indextpl.Tree)
 	if err != nil {
 		log.Fatal("ParseFiles() error when adding archieveCategory \n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl.Funcs(template.FuncMap{
@@ -168,7 +174,7 @@ func RenderCategories() {
 			}
 			outFile, err := os.Create(pagePath)
 			if err != nil {
-				log.Fatal("Create() error when create page.html")
+				fmt.Println(err)
 			}
 			err = completeIndexTpl.Execute(outFile, map[string]interface{}{
 				"globalconfig": GlobalConfig,
@@ -194,6 +200,7 @@ func RenderTags() {
 	partialstpl, err := template.ParseGlob(filepath.Join(themePath, "partials", "_*.html"))
 	if err != nil {
 		log.Fatal("ParseGlob() error when reading and parse _*.html")
+		fmt.Println(err)
 	}
 
 	indexByte, err := os.ReadFile("./themes/tag.html")
@@ -207,11 +214,13 @@ func RenderTags() {
 
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse tag.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl, err := partialstpl.AddParseTree("archiveTag", indextpl.Tree)
 	if err != nil {
 		log.Fatal("ParseFiles() error when adding archiveTag \n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl.Funcs(template.FuncMap{
@@ -265,6 +274,7 @@ func RenderTags() {
 			outFile, err := os.Create(pagePath)
 			if err != nil {
 				log.Fatal("Create() error when create page.html")
+				fmt.Println(err)
 			}
 			err = completeIndexTpl.Execute(outFile, map[string]interface{}{
 				"globalconfig": GlobalConfig,
@@ -289,6 +299,7 @@ func RenderArchive() {
 	partialstpl, err := template.ParseGlob(filepath.Join(themePath, "partials", "_*.html"))
 	if err != nil {
 		log.Fatal("ParseGlob() error when reading and parse _*.html")
+		fmt.Println(err)
 	}
 
 	archiveByte, err := os.ReadFile("./themes/archive.html")
@@ -302,11 +313,13 @@ func RenderArchive() {
 
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse archive.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl, err := partialstpl.AddParseTree("restitem", archivetpl.Tree)
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse archive.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl.Funcs(template.FuncMap{
@@ -342,6 +355,7 @@ func RenderArticles() {
 	partialstpl, err := template.ParseGlob(filepath.Join(themePath, "partials", "_*.html"))
 	if err != nil {
 		log.Fatal("ParseGlob() error when reading and parse _*.html")
+		fmt.Println(err)
 	}
 
 	articleByte, err := os.ReadFile("./themes/article.html")
@@ -354,11 +368,13 @@ func RenderArticles() {
 
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse article.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl, err := partialstpl.AddParseTree("article", articleTpl.Tree)
 	if err != nil {
 		log.Fatal("ParseFiles() error when reading and parse article.html\n", err)
+		fmt.Println(err)
 	}
 
 	completeIndexTpl.Funcs(template.FuncMap{
