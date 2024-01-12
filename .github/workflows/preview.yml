@@ -16,3 +16,7 @@ jobs:
           path: ./
       - name: debug list
         run: ls
+      - name: generate public static direcory public
+        run: .\roughpage.exe
+      - name: debug list
+        run: ls
