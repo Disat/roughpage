@@ -5,7 +5,5 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/download-artifact@v4
-      with:
-        name: roughpage
     - name: Display structure of downloaded files
       run: ls 
