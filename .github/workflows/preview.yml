@@ -4,17 +4,8 @@ jobs:
   roughpage_preview:
     runs-on: windows-latest
     steps:
-      - name: checkout 
-        uses: actions/checkout@v4
-      - name: debug list
-        run: ls
-      - name: cd  (Set-Location) 
-        run: Set-Location .\roughpage\
-      - name: debug list
-        run:  ls
-      - name: install roughpage
-        run: go mod tidy
-      - name: build roughpage
-        run: go build .
-      - name: execute roughpage
-        run: .\roughpage.exe
+    - uses: actions/download-artifact@v4
+      with:
+        name: roughpage.exe
+    - name: Display structure of downloaded files
+      run: ls 
