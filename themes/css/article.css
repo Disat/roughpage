@@ -210,11 +210,13 @@ main article blockquote{
 }
 main article div,
 main article table,
-main article dl,
-main article video main article p {
-    line-height: 1.5rem;
+main article dl {
     text-align: justify;
     margin-bottom: 1rem;
+}
+
+main article p{
+    line-height: 1.5rem;
 }
 
 main article h1,
