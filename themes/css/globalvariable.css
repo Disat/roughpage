@@ -1,11 +1,7 @@
-@font-face {
-    font-family: "MuYuShiDeYi";
-    src: url("/fonts/MuYuShiDeYi-2.woff2") format("woff2");
-}
-
+:root{
+    --font-size:16px;
 
 /* color */
-:root{
     --bg_h: #f9f5d7;
     --bg: #fbf1c7;
     --bg_s: #f2e5bc;
@@ -19,8 +15,6 @@
     --fg2: #504945;
     --fg3: #665c54;
     --fg4: #7c6f64;
-    --font-size:20px;
-    --font-family: "MuYuShiDeYi";
 
     --red: #fb4934;
     --green: #b8bb26;
