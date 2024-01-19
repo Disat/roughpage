@@ -1,5 +1,6 @@
 :root{
     --font-size:16px;
+    font-family: monospace;
 
 /* color */
     --bg_h: #f9f5d7;
