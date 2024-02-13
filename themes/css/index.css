@@ -264,7 +264,7 @@ main .page-number svg:last-child{
 .sidebar .category-container a{
     display: block;
     margin-left: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 .sidebar .category-container li svg{
    position: absolute;
