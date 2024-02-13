@@ -302,8 +302,10 @@ footer{
 }
 
 .side-toc-container nav{
-      padding: 0.2rem .5rem;
+    padding: 0.2rem .5rem;
     position: relative;
+    counter-reset: ul-h2;
+
 }
 
 .side-toc-container svg{
