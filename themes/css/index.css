@@ -5,11 +5,11 @@
 }
 
 :root {
-    --bg: #fbf1c7;
+    /* --bg: #fbf1c7;
      --bg2: #d5c4a1;
      --bg3:#bdae93;
     --fg: #282828;
-    --fg2: #7c6f64;
+    --fg2: #7c6f64; */
     font-size: var(--font-size);
 }
 
