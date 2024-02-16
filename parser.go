@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 	"path"
@@ -47,6 +48,7 @@ func ParseArticles() {
 		markdownList := strings.SplitN(string(articleByte), "---", 2)
 		err = json.Unmarshal([]byte(markdownList[0]), &article.ArticleConfig)
 		if err != nil {
+			fmt.Println(file+"occured an error")
 			log.Fatal("Unmarshel error when parse ArticleConfig\n", err)
 		}
 		article.ArticleConfig.Markdown = markdownList[1]
