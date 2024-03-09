@@ -1,10 +1,10 @@
 {
-"title": "RoughPage文章模板",
+"title": "现代Javascript",
 "top": true,
 "toc": true,
-"category": "Markdown",
-"tags":["设计","写作"],
-"preview": "这是文章模板"
+"category": "Javascript",
+"tags":["浏览器前端","Javascript"],
+"preview": "Javascript的语法梳理"
 }
 ---
 # 将Javascript引入HTML中
