@@ -60,13 +60,15 @@
 windows分配栈的时候从高地址向低地址分配。\
 模拟栈结构的操作：\
 
-` mov ebx,EFFC68  ；初始化栈结构，即给栈顶和栈底赋值。
+``` mov ebx,EFFC68  ；初始化栈结构，即给栈顶和栈底赋值。
   mov edx,EFFC68
 
   mov dword ptr ds:[edx-4],AAAAAAAA  ；使用栈存值，分两步，先写值再更改栈顶指针
   sub edx,4
 
   nop
-  lea edx,dword ptr ds:[edx-4]       ；先修改栈顶指针，再存值
+  lea edx,dword ptr ds:[edx-4]       ；存值，先修改栈顶指针，再存值
   mov dword ptr ds:[edx],BBBBBBBB
-  `
+
+  mov esi,dword ptr ds:[ebx-8]    ;取出想要保存的值，可以从栈底开始也可以从栈顶开始加偏移值。
+  ```
