@@ -49,3 +49,15 @@ ECMAScript 变量是松散类型的，意思是变量可以用于保存任何类
 -  "object" 表示值为对象（而不是函数）或 null ；
 -  "function" 表示值为函数；
 -  "symbol" 表示值为符号
+### Boolean类型
+其余5种数据(不包含Symbol)类型转换成false值的情况：
+- string  ""
+- Number 0，NaN
+- Object null
+- Undefined undefined
+- Null  null
+### Number类型
+NaN值的产生，判断方法。\
+#### 数值转换
+其余5种（不包括Symbol）转换成数值类型的函数。\
+可能出现的情况。\
