@@ -22,4 +22,30 @@
 动态加载影响页面渲染速度。要想让预加载器知道这些动态请求文件的存在，可以在文档头部显式声明它们：\
 `<link rel="preload" href="dynamic.js">`
 ## 行内代码和外部文件
-#
+# 语言基础
+## 语法
+类似C,但比C宽松。
+### 区分大小写
+### 严格模式
+### 语句
+分号，多条语句块。
+## 关键字和保留字
+## 变量
+ECMAScript 变量是松散类型的，意思是变量可以用于保存任何类型的数据。\
+有 3 个关键字可以声明变量： var 、 const 和 let 。
+### 声明风格及最佳实践
+1. 不使用 var
+2. const 优先， let 次之
+## 数据类型
+ 6 种简单数据类型：Undefined, Null, Boolean, Number, String, Symbol。\
+ 1 种复杂数据类型：Object。\
+ 因为 ECMAScript 的类型系统是松散的，所以需要一种手段来确定任意变量的数据类型。
+ ### typeof操作符
+ 对一个值使用 typeof 操作符会返回下列字符串之一：
+-  "undefined" 表示值未定义；
+-  "boolean" 表示值为布尔值；
+-  "string" 表示值为字符串；
+-  "number" 表示值为数值；
+-  "object" 表示值为对象（而不是函数）或 null ；
+-  "function" 表示值为函数；
+-  "symbol" 表示值为符号
