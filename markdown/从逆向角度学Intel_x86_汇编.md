@@ -175,3 +175,18 @@ mov cl,0x2
 sbb al, cl ;结果al为0x1
 `
 # XCHG指令
+交换源操作数和目标操作数\
+xchg r/m8/16/32,r/m8/16/32 ；但是不能直接交换两个内存的值
+
+# MOVS指令
+movs/movsb/w/d m8/16/32，m8/16/32 ;移动数据内存间移动数据。\
+MOV BYTE PTR ES:[EDI],BYTE PTR DS:[ESI] ；从DS:[ESI]中取出一个字节，放入DS[EDI]中。 \
+## 标志寄存器方向标志位DF
+当DF值为1时，movs 系列指令在在移动完数据后，ESI,EDI的值减去移动距离。当为0时加上移动距离。\
+movs系列指令一般用于字符串复制。
+# STOS指令
+将AL/AX/EAX的值存储到[EDI]指定的内存单元。受方向标志位DF影响。
+`
+STOS BYTE PTR ES:[EDI] ;简写为STOSB,将AL值放入内存
+STOS WORD PTR ES:[EDI] ;简写STOSW，将AX值放入内存
+STOS DWORD PTR ES:[EDI] ;简写STOSD,将EAX值放入内存
