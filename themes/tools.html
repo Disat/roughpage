@@ -289,7 +289,7 @@
         let nPaddingLeft = 3
         for (; nCalculatedDividend > 0; i++) {
             nRemainder = nCalculatedDividend % nDivisor
-            sRemainder += nRemainder
+            sRemainder = nRemainder + sRemainder
             tempalateString = `
             <div class="calculator-once-container">
                 <input type="text" class="calculated-divisor" value="${nDivisor}">
