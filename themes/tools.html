@@ -15,8 +15,9 @@
             height: 100%;
             width: 80%;
             margin: 0 auto;
-
-
+            border-bottom: solid 1px black;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
         }
 
         .input-container {
@@ -80,13 +81,184 @@
             margin-bottom: 2rem;
 
         }
+
+        td {
+            padding: .2rem .5rem;
+            text-align: center;
+        }
+
+        .result {
+            margin-top: 1rem;
+        }
+
+        .short-division-title {
+            font-size: 1.5rem;
+            margin-left: 2rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <table>
+            <tr>
+                <td>0000</td>
+                <td>0001</td>
+                <td>0010</td>
+                <td>0011</td>
+                <td>0100</td>
+                <td>0101</td>
+                <td>0110</td>
+                <td>0111</td>
+                <td>1000</td>
+                <td>1001</td>
+                <td>1010</td>
+                <td>1011</td>
+                <td>1100</td>
+                <td>1101</td>
+                <td>1110</td>
+                <td>1111</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>a</td>
+                <td>b</td>
+                <td>c</td>
+                <td>d</td>
+                <td>e</td>
+                <td>f</td>
+            </tr>
+        </table>
+    </div>
+    <div class="container">
+        <h2>3种有符号数编码方案</h2>
+        <table>
+            <th>
+                <tr>
+                    <td>decimal</td>
+                    <td>sign magnitude</td>
+                    <td>one's complement</td>
+                    <td>two's complement</td>
+                </tr>
+            </th>
+            <tr>
+                <td>-8</td>
+                <td></td>
+                <td></td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <td>-7</td>
+                <td>1111</td>
+                <td>1000</td>
+                <td>1001</td>
+            </tr>
+            <tr>
+                <td>-6</td>
+                <td>1110</td>
+                <td>1001</td>
+                <td>1010</td>
+            </tr>
+            <tr>
+                <td>-5</td>
+                <td>1101</td>
+                <td>1010</td>
+                <td>1011</td>
+            </tr>
+            <tr>
+                <td>-4</td>
+                <td>1100</td>
+                <td>1011</td>
+                <td>1100</td>
+            </tr>
+            <tr>
+                <td>-3</td>
+                <td>1011</td>
+                <td>1100</td>
+                <td>1101</td>
+            </tr>
+            <tr>
+                <td>-2</td>
+                <td>1010</td>
+                <td>1101</td>
+                <td>1110</td>
+            </tr>
+            <tr>
+                <td>-1</td>
+                <td>1001</td>
+                <td>1110</td>
+                <td>1111</td>
+            </tr>
+            <tr>
+                <td>-0</td>
+                <td>1000</td>
+                <td>1111</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>0000</td>
+                <td>0000</td>
+                <td>0000</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>0001</td>
+                <td>0001</td>
+                <td>0001</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>0010</td>
+                <td>0010</td>
+                <td>0010</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>0011</td>
+                <td>0011</td>
+                <td>0011</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>0100</td>
+                <td>0100</td>
+                <td>0100</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>0101</td>
+                <td>0101</td>
+                <td>0101</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>0110</td>
+                <td>0110</td>
+                <td>0110</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>0111</td>
+                <td>0111</td>
+                <td>0111</td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="container">
         <button class="calculate" onclick="calculate()">计算</button>
-        <button class="clear" onclick="clearContent()">清除</button>
+        <button class="clear" onclick="clearcontent()">清除</button>
+        <span class="short-division-title">短除法计算模板</span>
         <div class="input-container">
             <input type="text" class="divisor" placeholder="请输入除数">
             <input type="text" class="dividend" placeholder="请输入被除数">
@@ -95,10 +267,8 @@
         </div>
         <div class="calculated-container">
         </div>
-
-
-        <div class="result"></div>
     </div>
+
 </body>
 <script>
     function calculate() {
@@ -106,11 +276,11 @@
             return
         }
         let $ = document.querySelector.bind(document)
-        console.log($);
         let nDividend = parseInt($('.dividend').value);
         let nDivisor = parseInt($('.divisor').value)
         let nCalculatedDividend = parseInt(nDividend / nDivisor)
         let nFirstRemainder = nDividend % nDivisor
+        let sRemainder = nFirstRemainder.toString()
         $('.calculated-remainder').value = nFirstRemainder
         let i = 1
         let nRemainder = 0
@@ -119,6 +289,7 @@
         let nPaddingLeft = 3
         for (; nCalculatedDividend > 0; i++) {
             nRemainder = nCalculatedDividend % nDivisor
+            sRemainder += nRemainder
             tempalateString = `
             <div class="calculator-once-container">
                 <input type="text" class="calculated-divisor" value="${nDivisor}">
@@ -131,15 +302,16 @@
 
         }
         if (nCalculatedDividend == 0) {
-            let nMarginLeftUnit = 0.4
-            let nPaddingLeftUnit = 0.4
-            let nPaddingLeft = 3
             tempalateString = `
             <div class="calculator-once-container">
                 <input type="text" class="calculated-divisor" value="">
                 <input type="text" class="calculated-dividend" style="margin-left: ${i * nMarginLeftUnit}rem; padding-left: ${nPaddingLeft - nMarginLeftUnit * i}rem;border:none" placeholder="ttttt" value=${nCalculatedDividend}>
                 <input type="text" class="calculated-remainder" value="">
             </div>
+            <div class="result">
+                <span>系数从高位到低位：</span>
+                <span>${sRemainder}</span>
+             </div>
             `
             $('.calculated-container').innerHTML += tempalateString
         }
