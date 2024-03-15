@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools</title>
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .container {
+            height: 100%;
+            width: 80%;
+            margin: 0 auto;
+
+
+        }
+
+        .input-container {
+            display: flex;
+            justify-content: left;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+        input {
+            font-size: 2rem;
+            width: 200px;
+            height: 4rem;
+            border: none;
+
+        }
+
+        .divisor {
+            width: 6rem;
+        }
+
+        .dividend {
+            width: 8rem;
+            border-bottom: 3px solid black;
+            border-left: 3px solid black;
+            padding-left: 3rem;
+        }
+
+        ::placeholder {
+            color: #999;
+            font-size: 1rem;
+        }
+
+        .calculator-once-container {
+            margin-top: .4rem;
+            display: flex;
+            justify-content: left;
+        }
+
+        .calculated-divisor {
+            height: 4rem;
+            width: 6rem;
+            background-color: #fff;
+        }
+
+        .calculated-dividend {
+            height: 4rem;
+            width: 8rem;
+            background-color: #fff;
+            border-bottom: 3px solid black;
+            border-left: 3px solid black;
+            padding-left: 3rem;
+        }
+
+        .calculate,
+        .clear {
+            padding: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button class="calculate" onclick="calculate()">计算</button>
+        <button class="clear" onclick="clearContent()">清除</button>
+        <div class="input-container">
+            <input type="text" class="divisor" placeholder="请输入除数">
+            <input type="text" class="dividend" placeholder="请输入被除数">
+            <input type="text" class="calculated-remainder" value="">
+
+        </div>
+        <div class="calculated-container">
+        </div>
+
+
+        <div class="result"></div>
+    </div>
+</body>
+<script>
+    function calculate() {
+        if (document.querySelector('.calculated-container .calculator-once-container')) {
+            return
+        }
+        let $ = document.querySelector.bind(document)
+        console.log($);
+        let nDividend = parseInt($('.dividend').value);
+        let nDivisor = parseInt($('.divisor').value)
+        let nCalculatedDividend = parseInt(nDividend / nDivisor)
+        let nFirstRemainder = nDividend % nDivisor
+        $('.calculated-remainder').value = nFirstRemainder
+        let i = 1
+        let nRemainder = 0
+        let nMarginLeftUnit = 0.4
+        let nPaddingLeftUnit = 0.4
+        let nPaddingLeft = 3
+        for (; nCalculatedDividend > 0; i++) {
+            nRemainder = nCalculatedDividend % nDivisor
+            tempalateString = `
+            <div class="calculator-once-container">
+                <input type="text" class="calculated-divisor" value="${nDivisor}">
+                <input type="text" class="calculated-dividend" style="margin-left: ${i * nMarginLeftUnit}rem; padding-left: ${nPaddingLeft - nMarginLeftUnit * i}rem;" placeholder="ttttt" value=${nCalculatedDividend}>
+                <input type="text" class="calculated-remainder" value="${nRemainder}">
+            </div>
+            `
+            $('.calculated-container').innerHTML += tempalateString
+            nCalculatedDividend = parseInt(nCalculatedDividend / nDivisor)
+
+        }
+        if (nCalculatedDividend == 0) {
+            let nMarginLeftUnit = 0.4
+            let nPaddingLeftUnit = 0.4
+            let nPaddingLeft = 3
+            tempalateString = `
+            <div class="calculator-once-container">
+                <input type="text" class="calculated-divisor" value="">
+                <input type="text" class="calculated-dividend" style="margin-left: ${i * nMarginLeftUnit}rem; padding-left: ${nPaddingLeft - nMarginLeftUnit * i}rem;border:none" placeholder="ttttt" value=${nCalculatedDividend}>
+                <input type="text" class="calculated-remainder" value="">
+            </div>
+            `
+            $('.calculated-container').innerHTML += tempalateString
+        }
+    }
+    function clearContent() {
+        document.querySelector(".calculated-container").innerHTML = ""
+        document.querySelector(".calculated-remainder").value = ""
+    }
+</script>
+
+</html>
