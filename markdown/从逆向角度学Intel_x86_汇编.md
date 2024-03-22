@@ -204,3 +204,9 @@ REP MOVSD
 REP STOSD
 ```
 # JUMP指令
+JUMP 跳转 128字节内会自动加short
+jump指令执行前和执行后，cpu内寄存器状态只有EIP变化。内存种数据状态不变。\
+## 可以修改eip的指令
+call
+# CALL指令
+执行前后CPU寄存器和内存中数据的变化。ESP和EIP变了，内存值发生变化了，栈内存的值改了4个字节。、

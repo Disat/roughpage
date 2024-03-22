@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools</title>
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+
+    The loading of KaTeX is deferred to speed up page rendering -->
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+
+    To automatically render math in text elements, include the auto-render extension: -->
+    <!-- <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);">
+            </script> -->
     <style>
         body {
             height: 100%;
@@ -94,6 +103,92 @@
         .short-division-title {
             font-size: 1.5rem;
             margin-left: 2rem;
+        }
+
+        table {
+            border-collapse: collapse;
+
+        }
+
+
+        .truth-table table {
+            border-top: 2px solid #000;
+            border-bottom: 2px solid #000;
+        }
+
+        .truth-table thead th {
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+        }
+
+        .truth-table thead tr th {
+            border-bottom: 1px #666 solid;
+        }
+
+        .truth-table td,
+        .truth-table th {
+            padding: .25rem;
+            padding-left: .2rem;
+            padding-right: .2rem;
+        }
+
+        .truth-table button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .truth-table .function-button {
+            padding: 0;
+            border: none;
+        }
+
+        .truth-table .table-container {
+            display: flex;
+        }
+
+
+        .add-result-colomn,
+        .add-reason-colomn {
+            cursor: pointer;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+        }
+
+        .truth-table thead,
+        .add-reason-colomn,
+        .add-result-colomn {
+            height: 3rem;
+        }
+
+        .truth-table table input {
+            font-size: 1.5rem;
+            padding: 0;
+            margin: 0;
+            height: auto;
+            width: 4rem;
+            text-align: center;
+
+        }
+
+        .truth-table table input::placeholder {
+            background-color: #ddd;
+        }
+
+        .truth-table .result {
+            border-left: 1px solid #000;
+
+        }
+
+        .truth-table td {
+            cursor: pointer;
+            height: 2rem;
+        }
+
+        .logic-expression-container,
+        .expression-container {
+            font-size: 2rem;
         }
     </style>
 </head>
@@ -269,6 +364,51 @@
         </div>
     </div>
 
+    <div class="container truth-table">
+        <h3>全真值表生成工具</h3>
+        <button type="button" onclick="generatetable()">生成真值表</button>
+        <button type="button" onclick="generateexpression(event)">根据真值表生成表达式</button>
+
+
+
+
+        <div class="table-container">
+            <div class="add-reason-colomn" onclick="addReasonColomn()">
+                <svg role="graphics-symbol" viewBox="0 0 16 16" style="width: 16px; height: 16px; display: block; fill: rgba(14, 13, 12, 0.966); flex-shrink: 0;" class="plus">
+                    <path d="M7.977 14.963c.407 0 .747-.324.747-.723V8.72h5.362c.399 0 .74-.34.74-.747a.746.746 0 00-.74-.738H8.724V1.706c0-.398-.34-.722-.747-.722a.732.732 0 00-.739.722v5.529h-5.37a.746.746 0 00-.74.738c0 .407.341.747.74.747h5.37v5.52c0 .399.332.723.739.723z"></path>
+                </svg>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+
+                        <th class="reason"><input type="text" placeholder=""></th>
+                        <th class="result"><input type="text" placeholder="" value=""></th>
+
+                    </tr>
+                </thead>
+                <tbody onclick="changevalue(event)">
+
+                </tbody>
+            </table>
+            <div class="add-result-colomn" onclick="addResultColomn()">
+                <svg role="graphics-symbol" viewBox="0 0 16 16" style="width: 16px; height: 16px; display: block; fill: rgba(14, 13, 12, 0.966); flex-shrink: 0;" class="plus">
+                    <path d="M7.977 14.963c.407 0 .747-.324.747-.723V8.72h5.362c.399 0 .74-.34.74-.747a.746.746 0 00-.74-.738H8.724V1.706c0-.398-.34-.722-.747-.722a.732.732 0 00-.739.722v5.529h-5.37a.746.746 0 00-.74.738c0 .407.341.747.74.747h5.37v5.52c0 .399.332.723.739.723z"></path>
+                </svg>
+            </div>
+        </div>
+
+
+        <div class="expression-container">
+
+        </div>
+        <div class="logic-expression-container">
+
+        </div>
+
+
+    </div>
 </body>
 <script>
     function calculate() {
@@ -321,5 +461,153 @@
         document.querySelector(".calculated-remainder").value = ""
     }
 </script>
+<script>
+    function addResultColomn() {
+
+        document.querySelector(".truth-table thead tr").insertAdjacentHTML("beforeend", `
+<th class="result-added"><input type="text" placeholder="" value=""></th>`)
+    }
+    function addReasonColomn() {
+        document.querySelector(".truth-table thead tr").insertAdjacentHTML("afterbegin", `
+<th class="reason"><input type="text" placeholder="" value=""></th>` )
+    }
+
+    function generatetable() {
+        let oThlist = Array.from(document.querySelectorAll('.truth-table thead th'))
+        let resultindex = oThlist.findIndex(item => item.classList.contains('result'))
+
+        let nNumberOfReasons = document.querySelectorAll('.truth-table thead .reason').length
+        let nNumberOfResults = document.querySelectorAll('.truth-table thead .result-added').length + 1
+
+        let sRowHtml = ``
+        let sResultRowHmtl = '<td column="0" class="result">0</td>'
+        for (let n = 1; n < nNumberOfResults; n++) {
+            sResultRowHmtl += `<td column=${n}>0</td>`
+        }
+        let sBinary
+        let sWrapCell
+        for (let n = 0; n < Math.pow(2, nNumberOfReasons); n++) {
+            sBinary = n.toString(2)
+            if (sBinary.length < nNumberOfReasons) {
+                sBinary = new Array(nNumberOfReasons - sBinary.length).fill('0').join('') + sBinary
+            }
+            sWrapCell = `<tr row=${n}>`
+            sBinary.split("").forEach((value, index) => {
+                sWrapCell += `<td reason-column=${index}>${value}</td>`
+            }
+            )
+            sWrapCell += `${sResultRowHmtl}</tr>`
+            sRowHtml += sWrapCell
+        }
+        document.querySelector('.truth-table table tbody').innerHTML = sRowHtml
+    }
+    function changevalue(e) {
+        if (e.target.tagName == "TD") {
+            let nInner = parseInt(e.target.innerHTML)
+            if (nInner == 0) {
+                e.target.innerHTML = 1
+                e.target.setAttribute('resultvalue', 1)
+            } else {
+                e.target.innerHTML = 0
+                e.target.setAttribute('resultvalue', 0)
+            }
+
+        }
+    }
+    function generateexpression() {
+        let reasonList = []
+        document.querySelectorAll('.truth-table thead .reason input').forEach(v => reasonList.push(v.value))
+        reasonList = reasonList
+        let resultList = []
+        document.querySelectorAll('.truth-table thead .result-added input').forEach(v => resultList.push(v.value))
+        resultList.unshift(document.querySelector(".truth-table thead .result input").value)
+
+        let oOneValuelists = document.querySelectorAll(".truth-table tbody td[column]")
+        let nNumberOfResults = document.querySelectorAll('.truth-table thead .result-added').length + 1
+
+        let resultObj = {}
+        for (const value of oOneValuelists) {
+            if (parseInt(value.getAttribute('resultvalue'))) {
+                for (let n = 0; n < nNumberOfResults; n++) {
+                    if (parseInt(value.getAttribute('column')) == n) {
+                        if (!resultObj[n]) {
+                            resultObj[n] = []
+                            resultObj[n].push(parseInt(value.parentElement.getAttribute('row')))
+                        } else {
+                            resultObj[n].push(parseInt(value.parentElement.getAttribute('row')))
+                        }
+
+                    }
+                }
+            }
+        }
+
+        let oExpressionContainer = document.querySelector('.expression-container')
+        let sExpressionSet = ``
+        let sExpression = ``
+        let sSumOfProducts = ``
+        let sSumOfProductsExpression = ``
+        let oLogicExpressionContainer = document.querySelector('.logic-expression-container')
+        let sBinary
+        let nNumberOfReasons = document.querySelectorAll('.truth-table thead .reason').length
+        for (let index = 0; index < nNumberOfResults; index++) {
+            sSumOfProductsExpression = ``
+            const element = resultObj[index];
+            sExpressionSet += `<p>${resultList[index]} = (${element.toString()})</p>`
+
+
+            for (let index = 0; index < element.length; index++) {
+                sSumOfProducts = ``
+                sBinary = element[index].toString(2)
+                if (sBinary.length < nNumberOfReasons) {
+                    sBinary = new Array(nNumberOfReasons - sBinary.length).fill('0').join('') + sBinary
+                }
+                sBinary.toString(2).split("").forEach((v, i) => {
+
+                    switch (v) {
+                        case "0":
+                            if (!sSumOfProducts) {
+                                sSumOfProducts = reasonList[i] + `' `;
+                            } else {
+                                sSumOfProducts += "·" + reasonList[i] + `' `;
+                            }
+                            break;
+                        case "1":
+                            if (!sSumOfProducts) {
+                                sSumOfProducts = reasonList[i];
+
+                            } else {
+                                sSumOfProducts += "·" + reasonList[i];
+
+                            }
+                            break;
+                    }
+
+                })
+                if (!sSumOfProductsExpression) {
+                    sSumOfProductsExpression = sSumOfProducts
+                } else {
+                    sSumOfProductsExpression = sSumOfProductsExpression + " + " + sSumOfProducts
+                }
+            }
+
+            oLogicExpressionContainer.innerHTML += `<p>${resultList[index]} = ${sSumOfProductsExpression.toString()}</p>`
+        }
+        oExpressionContainer.innerHTML = sExpressionSet
+
+    }
+
+</script>
+
+<!-- <script type="module" type="text/javascript">
+    import katex from 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.mjs';
+    let oExpressionContainer = document.querySelector('.expression-container')
+
+    katex.render(String.raw`c = \pm\sqrt{a^2 + b^2}`, oExpressionContainer, {
+        throwOnError: false,
+    });
+</script>
+<script nomodule defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.js" integrity="sha384-ImWHyYvDPlRzwFnvLhG9Jcpm/7qL4SVIuJK0C6Rj+Mf7fpeNJCLCynC+EVz4kCSA" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.css" integrity="sha384-OH8qNTHoMMVNVcKdKewlipV4SErXqccxxlg6HC9Cwjr5oZu2AdBej1TndeCirael" crossorigin="anonymous"> -->
 
 </html>
