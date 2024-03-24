@@ -190,6 +190,12 @@
         .expression-container {
             font-size: 2rem;
         }
+
+        .decimal-hex-button {
+            padding: 1rem;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
     </style>
 </head>
 
@@ -409,6 +415,12 @@
 
 
     </div>
+    <div class="container">
+        <h3>32bits 10进制数和16进制数转换</h3>
+        <input type="text" class="decimal-input" placeholder="十进制数正整数">
+        <input type="text" class="hex-input" placeholder="十六进制数正整数">
+        <button class="decimal-hex-button" onclick="decialhex()">转换</button>
+    </div>
 </body>
 <script>
     function calculate() {
@@ -597,6 +609,18 @@
 
     }
 
+</script>
+<script>
+    function decimalhex() {
+        let nDecimal = document.querySelector('.decimal-input').value
+        let nHex = document.querySelector('.hex-input').value
+        if (nHex == "") {
+            document.querySelector('.hex-input').value = nDecimal.toString(16)
+        }
+        if (nDecimal == "") {
+            document.querySelector('.decimal-input').value = nHex.toString(10)
+        }
+    }
 </script>
 
 <!-- <script type="module" type="text/javascript">
