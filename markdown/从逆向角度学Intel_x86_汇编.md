@@ -223,7 +223,7 @@ call
 一个函数的栈帧从上到下（地址从小到大）：
 局部变量\
 上一个栈帧的基址\
-子程序的返回地址
+子程序的返回地址\
 子程序参数\
 当开始执行子程序的功能代码时，栈基址和栈顶指针指向上一个栈帧的基址处。
 ### 局部变量是栈空间的一块内存
@@ -238,3 +238,32 @@ void __declspec(naked) Plus(){
   }
 }
 ```
+```
+// c函数完整的外平栈补全指令
+		push ebp
+		mov ebp, esp
+		sub esp,0x40
+		push ebx
+		push esi
+		push edi
+
+		mov eax,0xCCCCCCCC
+		mov ecx,0x10
+		lea edi, dword ptr ds:[ebp-0x40]
+		rep stosd
+
+		pop edi
+		pop esi
+		pop ebx
+		mov esp, ebp
+		pop ebp
+		ret
+```
+
+## 调用约定
+约定2方面内容：
+1. 参数压栈顺序
+2. 堆栈平衡谁来做
+- __cdecl 外平栈
+- __stdcall 内平栈 多用于win32api操作系统内部函数
+- __fastcall
