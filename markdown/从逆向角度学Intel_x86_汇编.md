@@ -75,7 +75,8 @@ lea esi, dword ptr ss:[esp+4] ;含义将ESP中值所表示的内存的地址加4
 windows分配栈的时候从高地址向低地址分配。\
 模拟栈结构的操作：\
 
-``` mov ebx,EFFC68  ；初始化栈结构，即给栈顶和栈底赋值。
+```
+mov ebx,EFFC68  ；初始化栈结构，即给栈顶和栈底赋值。
   mov edx,EFFC68
 
   mov dword ptr ds:[edx-4],AAAAAAAA  ；使用栈存值，分两步，先写值再更改栈顶指针
