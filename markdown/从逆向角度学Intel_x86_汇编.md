@@ -268,3 +268,32 @@ void __declspec(naked) Plus(){
 - __cdecl 外平栈
 - __stdcall 内平栈 多用于win32api操作系统内部函数
 - __fastcall
+# C语言的数据类型
+关注数据类型的三点即可
+- 存储数据的宽度
+- 存储数据的格式
+- 作用范围
+## 整数类型
+- char    byte    8bit    1字节
+- short   word    16bit   2字节
+- int     dword   32bit   4字节
+- long
+注意：\
+```
+char i = 0x12345678;
+00D11795 C6 45 FB 78          mov         byte ptr [ebp-5],78h
+```
+- 多余部分高位舍弃
+- 局部变量char类型是从ebp-5（vs2019）开始，shrot, int 从ebp-8开始。【可能和内存对齐，cpu寻址时间有关】
+### 整数类型又分为有符号和无符号数，默认是有符号编码
+unsigned {char|short|int|long},单独的unsigned表示unsigned int。\
+```
+	char i = 0xff;
+	unsigned char x = 0xff;
+	printf("%d  %d", i, x);
+  // -1  255
+```
+在内存中都是0xff,但是通过%d（以一个十进制数形式表示，至于是否有符号取决于数变量的定义，decimal integer）打印出来时，区分是否有符号。\
+是否有符号在类型转换，比较大小和数学运算表现不同。\
+【在无符号数比较时，经过msvc编译器生成的指令不同，详见201501260141】
+## 浮点类型
