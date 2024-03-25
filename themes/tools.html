@@ -619,7 +619,7 @@
             document.querySelector('.hex-input').value = parseInt(nDecimal).toString(16)
         }
         if (nDecimal == "") {
-            document.querySelector('.decimal-input').value = parseInt(nHex).toString(10)
+            document.querySelector('.decimal-input').value = parseInt(nHex, 16).toString(10)
         }
     }
 </script>
