@@ -230,6 +230,9 @@ call
 ### 局部变量是栈空间的一块内存
 一般通过[EBP-0x]方式确定其位置。存放局部变量时没有使用push指令，所以不会改变栈顶指针esp的值。
 
+## Ret指令
+ret numnber\
+执行后esp+4+number
 ## 裸函数
 ```
 void __declspec(naked) Plus(){
@@ -297,3 +300,8 @@ unsigned {char|short|int|long},单独的unsigned表示unsigned int。\
 是否有符号在类型转换，比较大小和数学运算表现不同。\
 【在无符号数比较时，经过msvc编译器生成的指令不同，详见201501260141】
 ## 浮点类型
+```
+int i = 1;
+000C1795 C7 45 F8 01 00 00 00 mov         dword ptr [ebp-8],1
+```
+msvc 2019会把第一个局部变量存放在ebp-8的位置，vc6会存放在ebp-4。\

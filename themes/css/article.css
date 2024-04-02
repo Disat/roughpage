@@ -299,6 +299,7 @@ footer{
     right: 6rem;
     background-color: var(--bg_s);
     z-index: 13;
+    height: 80vh;
 }
 
 .side-toc-container nav{
