@@ -24,6 +24,10 @@ jobs:
       - name: generate public directory
         run: .\roughpage.exe
       - name: Install Vercel CLI
-        run: npm i  vercel@latest
-      - name: deploy
-        run: .\node_modules\.bin\vercel --prod -y
+        run: yarn add vercel@canary
+      - name: Pull Vercel Environment Information
+        run: .\node_modules\.bin\vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: .\node_modules\.bin\vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: .\node_modules\.bin\vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
