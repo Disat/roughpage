@@ -26,4 +26,4 @@ jobs:
       - name: Install Vercel CLI
         run: npm i  vercel@latest
       - name: deploy
-        run: .\node_modules\.bin\vercel  -y --prod`
+        run: .\node_modules\.bin\vercel --prod -y
