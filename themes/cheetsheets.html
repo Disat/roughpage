@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cheatsheets</title>
+    <style>
+        code {
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="curl container">
+        <div class="sub-container">
+            <h2>常用操作</h2>
+            <div class="sub-sub-container">
+                <h3>发送无参数http POST请求, 并显示response header</h3>
+                <code>
+                     curl -i -X POST http://localhost:4000/snippet/create
+                </code>
+                <code>
+                    HTTP/1.1 200 OK
+                    Date: Sat, 27 Apr 2024 12:52:28 GMT
+                    Content-Length: 20
+                    Content-Type: text/plain; charset=utf-8
+
+                    Create a new snippet
+                </code>
+                <p>-i: 表示显示response header.</p>
+                <p>-X POST: 作为一个整体表示发送HTTP POST请求</p>
+                <p>可选参数：-v: 显示整个请求过程,包括request,和response</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -24,6 +24,6 @@ func main() {
 	RenderTags()
 	RenderArchive()
 	RenderArticles()
-	utils.Copy([]string{"js", "css", "fonts", "favicon.ico", "tools.html"})
+	utils.Copy([]string{"js", "css", "fonts", "favicon.ico", "tools.html", "cheatsheets.html"})
 
 }
