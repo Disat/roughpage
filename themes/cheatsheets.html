@@ -15,6 +15,11 @@
         .container {
             margin-left: 4rem;
         }
+
+        .attention {
+            font-size: 1.2rem;
+            font-style: bold;
+        }
     </style>
 </head>
 
@@ -39,6 +44,55 @@
                 <p>-i: 表示显示response header.</p>
                 <p>-X POST: 作为一个整体表示发送HTTP POST请求</p>
                 <p>可选参数：-v: 显示整个请求过程,包括request,和response</p>
+            </div>
+            <div class="sub-sub-container">
+                <h3>跟踪重定向, 并显示response header</h3>
+                <pre>
+                     curl -iL -v -X POST http://localhost:4000/snippet/create
+                </pre>
+                <pre>
+                    *   Trying ::1...
+                    * TCP_NODELAY set
+                    * Connected to localhost (::1) port 4000 (#0)
+                    > POST /snippet/create HTTP/1.1
+                    > Host: localhost:4000
+                    > User-Agent: curl/7.55.1
+                    > Accept: */*
+                    >
+                    < HTTP/1.1 303 See Other
+                    HTTP/1.1 303 See Other
+                    < Location: /snippet/view?id=9
+                    Location: /snippet/view?id=9
+                    < Date: Mon, 29 Apr 2024 07:31:42 GMT
+                    Date: Mon, 29 Apr 2024 07:31:42 GMT
+                    < Content-Length: 0
+                    Content-Length: 0
+
+                    <
+                    * Connection #0 to host localhost left intact
+                    * Issue another request to this URL: 'http://localhost:4000/snippet/view?id=9'
+                    * Found bundle for host localhost: 0x2984cc25a50 [can pipeline]
+                    * Re-using existing connection! (#0) with host localhost
+                    * Connected to localhost (::1) port 4000 (#0)
+                    > POST /snippet/view?id=9 HTTP/1.1
+                    > Host: localhost:4000
+                    > User-Agent: curl/7.55.1
+                    > Accept: */*
+                    >
+                    < HTTP/1.1 200 OK
+                    HTTP/1.1 200 OK
+                    < Date: Mon, 29 Apr 2024 07:31:42 GMT
+                    Date: Mon, 29 Apr 2024 07:31:42 GMT
+                    < Content-Length: 43
+                    Content-Length: 43
+                    < Content-Type: text/plain; charset=utf-8
+                    Content-Type: text/plain; charset=utf-8
+
+                    <
+                    Display a specific snippet with ID is 9 ...* Connection #0 to host localhost left intact
+                </pre>
+                <div class="attention">注意:</div>
+                <p>-L 表示跟踪303，302，301,可能会发送多个request。一般和-v搭配使用,显示整个过程</p>
             </div>
         </div>
 
